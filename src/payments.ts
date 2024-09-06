@@ -35,6 +35,12 @@ export abstract class Payments {
       const feeBips = this.encodeFeeBips(feeOptions.fee)
       const feeRecipient: string = validateAndParseAddress(feeOptions.recipient)
 
+      // HYDEX - start
+      console.log('Payments.encodeUnwrapWETH9 - feeBips:', feeBips);
+      console.log('Payments.encodeUnwrapWETH9 - feeRecipient:', feeRecipient);
+      // HYDEX - end
+
+
       return Payments.INTERFACE.encodeFunctionData('unwrapWETH9WithFee', [
         toHex(amountMinimum),
         recipient,
@@ -42,6 +48,11 @@ export abstract class Payments {
         feeRecipient
       ])
     } else {
+      // HYDEX - start
+      console.log('Payments.encodeUnwrapWETH9 - amountMinimum:', amountMinimum);
+      console.log('Payments.encodeUnwrapWETH9 - recipient:', recipient);
+      // HYDEX - end
+
       return Payments.INTERFACE.encodeFunctionData('unwrapWETH9', [toHex(amountMinimum), recipient])
     }
   }
